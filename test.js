@@ -10,6 +10,7 @@ let promise = new Promise(function fn(resolve) {
 });
 
 async function a() {
+	
 	await promise;
 	console.log("exe1!");
 
