@@ -1,11 +1,14 @@
 const YemotApiCall = require("./YemotApiCall");
 
 module.exports = class YemotExtension {
+
 	constructor() {
 		this.active_calls = {};
 	}
 
+
 	async run(req, res, next, gen_fn) {
+
 		let call_id = req.query.ApiCallId;
 
 		let current_call = this._get_current_call(call_id, gen_fn);

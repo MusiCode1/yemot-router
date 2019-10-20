@@ -1,9 +1,8 @@
 const EventEmitter = require("events");
-
-const eventEmitter = new EventEmitter();
+const event = new EventEmitter();
 
 let promise = new Promise(function fn(resolve) {
-	eventEmitter.once("con", () => {
+	event.once("con", () => {
 		resolve();
 		promise = new Promise(fn);
 	});
@@ -24,5 +23,5 @@ async function a() {
 a();
 
 setInterval(() => {
-	eventEmitter.emit("con");
+	event.emit("con");
 }, 1000);

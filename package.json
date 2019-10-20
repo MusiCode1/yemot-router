@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "eslint": "^6.5.1",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
     "sequelize": "^5.21.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "node index.js"
   },
-  "author": "",
+  "author": "Avi Britman",
   "license": "ISC"
 }

@@ -1,8 +1,17 @@
 const YemotApiFunctions = require("./YemotApiFunctions");
-/**
- * @typedef {YemotApiCall}
- */
-module.exports = class YemotApiCall extends YemotApiFunctions {
+
+const YemotApiCall = () => {
+
+	let r = Object.keys(YemotApiFunctions);
+
+};
+
+YemotApiCall();
+
+module.exports = YemotApiCall;
+
+/* 
+//module.exports = class YemotApiCall extends YemotApiFunctions {
 	constructor(callHandler) {
 		super();
 		this.controller = callHandler(this);
@@ -49,3 +58,4 @@ module.exports = class YemotApiCall extends YemotApiFunctions {
 		}
 	}
 };
+ */

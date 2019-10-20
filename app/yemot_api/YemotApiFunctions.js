@@ -1,105 +1,71 @@
-/*
-	המודול הזה, מכיל את המודול הבסיסי עם הפונקציות לתקשר עם ימות
-*/
-
-const default_options = {
-
-	//all
-	val_name: undefined,
-
-	//tapp
-	re_enter_if_exists: false,
-	max: "*",
-	min: 1,
-	sec_wait: 7,
-	play_ok_mode: "Number",
-	block_asterisk: true,
-	allow_zero: true,
-	replace_char: "**",
-	digits_allowed: undefined, // ['1', '14']
-	amount_attempts: undefined, // 1
-	read_none: false,
-	read_none_var: undefined,
-
-	//voice
-	lang: "he-IL",
-	allow_tap: false,
-
-	//rec
-	record_folder_move: undefined,
-	record_file_name: undefined,
-	record_ok: true,
-	record_hangup_save: false,
-	record_attach: false
-};
-
-const default_options_keys = Object.keys(default_options);
-
 const data_type = {
 
-	"file":"f",
-	"text":"t",
-	"speech":"s",
-	"digits":"d",
-	"number":"n",
-	"alpha":"a"
+	"file": "f",
+	"text": "t",
+	"speech": "s",
+	"digits": "d",
+	"number": "n",
+	"alpha": "a"
 };
 
-module.exports = class YemotApiFunctions {
-    
-	constructor() {
+const YemotApiFunctions = () => {
 
-		this.value_num = 1;
-	}
+	let value_num = 1;
+
 	/**
-	 * 
 	 * @typedef read_options
 	 * @property {string} val_name
+	 * @property {boolean} re_enter_if_exists
+	 * @property {number} max
+	 * @property {number} min
+	 * @property {number} sec_wait
+	 * @property {*} play_ok_mode
+	 * @property {boolean} block_asterisk
+	 * @property {boolean} allow_zero
+	 * @property {string} replace_char
+	 * @property {number[]} digits_allowed
+	 * @property {number} amount_attempts
+	 * @property {string} read_none_var
 	 */
 	/**
-	 * 
+	 * @function read
 	 * @param {*} data 
-	 * @param {*} mode 
+	 * @param {string} mode 
 	 * @param {read_options} options 
+	 * @returns {number}
 	 */
-	read(data, mode = "tap", options = {}) {
+	this.read = (data, mode = "tap", options = {}) => {
 
-		options = this._make_read_options(options);
-		
-		if(typeof data != "object") {
+		if (typeof data != "object") {
 			throw new Error("Data is undefined");
 		}
 
-		let data_str = this._make_read_data(data);
-
+		let data_str = make_read_data(data);
 		let res;
 
-		switch(mode) {
+		switch (mode) {
+			case "tap":
+				res = make_tap_mode_request(data_str, options);
+				break;
 
-		case "tap":
-			res = this._make_tap_mode_result(data_str, options);
-			break;
+			case "voice":
+				//...
+				break;
 
-		case "voice":
-			//...
-			break;
+			case "rec":
+				//...
+				break;
 
-		case "rec":
-			//...
-			break;
+			default:
+				throw new Error("mode parameter is Invalid");
 
-		default:
-			throw new Error("mode parameter is Invalid");
-			
 		}
-		
-		this.expect = options.val_name;
 		return res;
-	}
+	};
 
-	goToFolder(folder) {
+	this.goToFolder = (folder) => {
 		return `go_to_folder=${folder}`;
-	}
+	};
 	/**
 	 * 
 	 * @typedef data
@@ -107,42 +73,31 @@ module.exports = class YemotApiFunctions {
 	 * @property {string} data
 	 */
 	/**
-	 * 
 	 * @param {[data]} data 
 	 */
-	id_list_message(data) {
+	this.id_list_message = (data) => {
 
 		return "id_list_message=" + this._make_read_data(data);
-	}
+	};
 
-	credit_card() {
+	this.credit_card = () => {
 		// ...
-	}
+	};
 
-	routing_yemot(phone) {
+	this.routing_yemot = (phone) => {
 		return "routing_yemot=" + phone;
-	}
+	};
 
-	routing() {
+	this.routing = () => {
 		//...
-	}
+	};
 
-	// === === === === === === === === === === === === === ===
-	
-	_make_read_options(options) {
+	/**
+	 * 
+	 * private functions:
+	 */
 
-		default_options_keys.forEach((value) => {
-
-			if(!options[value]) {
-
-				options[value] = default_options[value];
-			}
-		});
-
-		return options;
-	}
-
-	_make_read_data(data) {
+	const make_read_data = (data) => {
 
 		let res = "";
 
@@ -150,57 +105,56 @@ module.exports = class YemotApiFunctions {
 
 		data.forEach((value) => {
 
-			res +=  i > 1? ".":"";
+			res += i > 1 ? "." : "";
 
 			res += data_type[value.type] + "-";
 
 			res += value.data;
 
-			i ++;
+			i++;
 		});
 
 		return res;
-	}
-	
-	_make_tap_mode_result (data_str, options) {
+	};
 
-		let res;
+	const make_tap_mode_request = (data_str, options) => {
 
-		res = `read=${data_str}=`;
+		if (!options.val_name) {
 
-		if(!options.val_name) {
-
-			options.val_name = "val_" + this.value_num;
-			this.value_num ++;
+			options.val_name = "val_" + value_num;
+			value_num++;
 		}
 
-		res += options.val_name + ",";
+		let res = [
+			`read=${data_str}=`,
 
-		res += options.re_enter_if_exists?"yes,":"no,";
+			options.val_name,
 
-		res += options.max + ",";
+			(options.re_enter_if_exists || false) ? "yes" : "no",
 
-		res += options.min + ",";
+			(options.max || "*"),
 
-		res += options.sec_wait + ",";
+			(options.min || "1"),
 
-		res += options.play_ok_mode + ",";
+			(options.sec_wait || 7),
 
-		res += options.block_asterisk?"yes,":"no,";
+			(options.play_ok_mode || "Number"),
 
-		res += options.allow_zero?"yes,":"no,";
+			(options.block_asterisk || true),
 
-		res += options.replace_char + ",";
+			(options.allow_zero || true),
 
-		res += options.digits_allowed?options.digits_allowed.join("."):"" + ",";
+			(options.replace_char || ""),
 
-		res += options.amount_attempts?options.amount_attempts:"" + ",";
+			options.digits_allowed ? options.digits_allowed.join(".") : "", // [1, 14]
 
-		res += options.read_none?options.read_none:"" + ",";
+			(options.amount_attempts || ""),
 
-		res += options.read_none?options.read_none:"";
+			(options.read_none_var || "")
+		];
 
-		return res;
-
-	}
+		return res.join(",");
+	};
 };
+
+module.exports = YemotApiFunctions;
