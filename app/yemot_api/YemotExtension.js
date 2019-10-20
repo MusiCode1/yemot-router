@@ -5,18 +5,6 @@ module.exports = class YemotExtension {
 		this.active_calls = {};
 	}
 
-	/**
-	 *
-	 * @callback generator_function
-	 * @param {YemotApiCall} call
-	 */
-	/**
-	 *
-	 * @param {Request} req
-	 * @param {Response} res
-	 * @param {NextFunction} next
-	 * @param {generator_function} gen_fn
-	 */
 	async run(req, res, next, gen_fn) {
 		let call_id = req.query.ApiCallId;
 
