@@ -8,36 +8,20 @@ const data_type = {
 	"alpha": "a"
 };
 
-const YemotApiFunctions = () => {
+const YemotApiFunctions = function ()  {
 
 	let value_num = 1;
 
-	/**
-	 * @typedef read_options
-	 * @property {string} val_name
-	 * @property {boolean} re_enter_if_exists
-	 * @property {number} max
-	 * @property {number} min
-	 * @property {number} sec_wait
-	 * @property {*} play_ok_mode
-	 * @property {boolean} block_asterisk
-	 * @property {boolean} allow_zero
-	 * @property {string} replace_char
-	 * @property {number[]} digits_allowed
-	 * @property {number} amount_attempts
-	 * @property {string} read_none_var
-	 */
-	/**
-	 * @function read
-	 * @param {*} data 
-	 * @param {string} mode 
-	 * @param {read_options} options 
-	 * @returns {number}
-	 */
-	this.read = (data, mode = "tap", options = {}) => {
+	this.make_read_response = function(data, mode, options) {
 
 		if (typeof data != "object") {
 			throw new Error("Data is undefined");
+		}
+
+		if (!options.val_name) {
+
+			options.val_name = "val_" + value_num;
+			value_num++;
 		}
 
 		let data_str = make_read_data(data);
@@ -60,12 +44,13 @@ const YemotApiFunctions = () => {
 				throw new Error("mode parameter is Invalid");
 
 		}
-		return res;
+		return res, options.val_name;
 	};
 
-	this.goToFolder = (folder) => {
+	this.goToFolder = function(folder) {
 		return `go_to_folder=${folder}`;
 	};
+
 	/**
 	 * 
 	 * @typedef data
@@ -75,7 +60,7 @@ const YemotApiFunctions = () => {
 	/**
 	 * @param {[data]} data 
 	 */
-	this.id_list_message = (data) => {
+	this.id_list_message = function(data) {
 
 		return "id_list_message=" + this._make_read_data(data);
 	};
@@ -84,11 +69,11 @@ const YemotApiFunctions = () => {
 		// ...
 	};
 
-	this.routing_yemot = (phone) => {
+	this.routing_yemot = function(phone) {
 		return "routing_yemot=" + phone;
 	};
 
-	this.routing = () => {
+	this.routing = function() {
 		//...
 	};
 
@@ -97,7 +82,7 @@ const YemotApiFunctions = () => {
 	 * private functions:
 	 */
 
-	const make_read_data = (data) => {
+	const make_read_data = function(data) {
 
 		let res = "";
 
@@ -117,13 +102,7 @@ const YemotApiFunctions = () => {
 		return res;
 	};
 
-	const make_tap_mode_request = (data_str, options) => {
-
-		if (!options.val_name) {
-
-			options.val_name = "val_" + value_num;
-			value_num++;
-		}
+	const make_tap_mode_request = function(data_str, options) {
 
 		let res = [
 			`read=${data_str}=`,

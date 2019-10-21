@@ -21,7 +21,7 @@ class call {
 		this.next = next;
 	}
 	async run() {
-		this.res.send('תענה לa, 1');
+		this.res.send("תענה לa, 1");
 		this.next();
 		let event = this.event;
 		let call_id = this.call_id;
@@ -39,6 +39,8 @@ class yemot {
 		this.express = express();
 		this.active_calls = {};
 		this.event = new EventEmitter();
+
+		this.express.use("/", ()=>{});
 	}
 
 	get(path, fn) {
@@ -52,9 +54,9 @@ class yemot {
 			if (!current_call) {
 				current_call = this.active_calls[call_id] = new call(call_id, this.event);
 				is_new_req = true;
-				console.log(call_id + ' is new');
+				console.log(call_id + " is new");
 			} else {
-				console.log(call_id + ' is return');
+				console.log(call_id + " is return");
 
 				let r = this.event.listeners(call_id).length;
 				console.log(r);
@@ -67,7 +69,7 @@ class yemot {
 				fn(current_call).then(() => {
 					console.log(this);
 					delete this.active_calls[call_id];
-					console.log(call_id, 'deleted');
+					console.log(call_id, "deleted");
 				});
 			}
 		});
@@ -75,16 +77,16 @@ class yemot {
 
 	listen() {
 
-		this.express.listen(3000, () => { console.log('lisen in port 3000'); });
+		this.express.listen(3000, () => { console.log("lisen in port 3000"); });
 	}
 }
 
 const y = new yemot();
 
-y.get('/', async (call) => {
+y.get("/", async (call) => {
 	let r = await call.run();
 	console.log(call.call_id, r);
-	call.res.send('הנה, גמרנו');
+	call.res.send("הנה, גמרנו");
 });
 
 y.listen();
