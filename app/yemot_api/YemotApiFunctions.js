@@ -8,13 +8,13 @@ const data_type = {
 	"alpha": "a"
 };
 
-const YemotApiFunctions = function ()  {
+const YemotApiFunctions = function () {
 
 	let value_num = 1;
 
-	this.make_read_response = function(data, mode, options) {
+	this.make_read_response = function (massage, mode, options) {
 
-		if (typeof data != "object") {
+		if (typeof massage != "object") {
 			throw new Error("Data is undefined");
 		}
 
@@ -24,7 +24,7 @@ const YemotApiFunctions = function ()  {
 			value_num++;
 		}
 
-		let data_str = make_read_data(data);
+		let data_str = make_read_data(massage);
 		let res;
 
 		switch (mode) {
@@ -44,45 +44,15 @@ const YemotApiFunctions = function ()  {
 				throw new Error("mode parameter is Invalid");
 
 		}
-		return res, options.val_name;
+		return [res, options.val_name];
 	};
 
-	this.goToFolder = function(folder) {
-		return `go_to_folder=${folder}`;
+	this.make_id_list_message_response = function (data) {
+
+		return "id_list_message=" + make_read_data(data);
 	};
 
-	/**
-	 * 
-	 * @typedef data
-	 * @property {string} type
-	 * @property {string} data
-	 */
-	/**
-	 * @param {[data]} data 
-	 */
-	this.id_list_message = function(data) {
-
-		return "id_list_message=" + this._make_read_data(data);
-	};
-
-	this.credit_card = () => {
-		// ...
-	};
-
-	this.routing_yemot = function(phone) {
-		return "routing_yemot=" + phone;
-	};
-
-	this.routing = function() {
-		//...
-	};
-
-	/**
-	 * 
-	 * private functions:
-	 */
-
-	const make_read_data = function(data) {
+	const make_read_data = function (data) {
 
 		let res = "";
 
@@ -102,7 +72,7 @@ const YemotApiFunctions = function ()  {
 		return res;
 	};
 
-	const make_tap_mode_request = function(data_str, options) {
+	const make_tap_mode_request = function (data_str, options) {
 
 		let res = [
 			`read=${data_str}=`,

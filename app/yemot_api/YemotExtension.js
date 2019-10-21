@@ -1,42 +1,62 @@
-const YemotApiCall = require("./YemotApiCall");
+const call = require("./YemotApiCall");
+const inherits = require("util").inherits;
+const Router = require("express").Router;
+const EventEmitter = require("events");
 
-module.exports = class YemotExtension {
+
+const YemotExtension = class YemotExtension extends Router {
 
 	constructor() {
-		this.active_calls = {};
+		super();
+		const events = new EventEmitter();
+		const active_calls = {};
+
+		/**
+		 * @callback handler
+		 * @param {call} call
+		 */
+
+		/**
+		 * @param {handler} fn
+		 */
+		this.add_fn = function(fn) {
+
+			const get_current_call = function(call_id) {
+	
+				let current_call = active_calls[call_id];
+				let is_new_req = false;
+		
+				if (!current_call) {
+					current_call = active_calls[call_id] = new call(call_id, events);
+					is_new_req = true;
+					console.log(call_id + " is new");
+				}
+		
+				return [current_call, is_new_req];
+			};
+	
+			this.all("/", (req, res, next) => {
+	
+				const call_id = req.query.ApiCallId;
+	
+				const [current_call, is_new_req] = get_current_call(call_id);
+				current_call.get_req_vals(req, res, next);
+	
+				if(is_new_req) {
+	
+					fn(current_call).then(() => {
+						console.log(this);
+						delete this.active_calls[call_id];
+						console.log(call_id, "deleted");
+					});
+	
+				} else {
+					events.emit(call_id);
+				}
+			});
+		};
 	}
-
-
-	async run(req, res, next, gen_fn) {
-
-		let call_id = req.query.ApiCallId;
-
-		let current_call = this._get_current_call(call_id, gen_fn);
-
-		current_call.set_user_vars(req.query);
-
-		let returned_key = current_call.get_return_value();
-
-		let reply = await current_call.controller.next(returned_key);
-
-		if (reply.done || req.query.Hangup) {
-			this._remove_current_call(call_id);
-		}
-
-		return res.send(reply.value);
-	}
-
-	_get_current_call(call_id, gen_fn) {
-		let current_call = this.active_calls[call_id];
-
-		if (!current_call) {
-			current_call = this.active_calls[call_id] = new YemotApiCall(gen_fn);
-		}
-
-		return current_call;
-	}
-
-	_remove_current_call(call_id) {
-		delete this.active_calls[call_id];
-	}
+	
 };
+
+module.exports = YemotExtension;
