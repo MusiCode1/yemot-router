@@ -1,26 +1,10 @@
 const express = require("express");
-const yemot_ext = require("./app/yemot_api");
+const router = require("./app/routers/");
 const port = 3000;
 
 const app = express();
 
-const y = new yemot_ext();
-
-app.use("/", y);
-
-y.add_fn(async (call) => {
-
-	let massage = [{ type: "text", data: "היי, תקיש 10" }];
-
-	let r = await call.read(massage);
-	console.log(call.call_id, r);
-
-	massage = [{ type: "text", data: "הקשת " + r + " תקיש 1 ותעוף מפה" }];
-	r = await call.id_list_message(massage);
-
-	console.log("noop");
-
-});
+app.use("/", router);
 
 app.listen(port, () => {
 	console.log("lisen in port", port);
