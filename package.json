@@ -11,6 +11,11 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "Musicode",
-  "license": "ISC"
+  "author": "musicode1",
+  "license": "ISC",
+  "keywords": [
+	  "extends express-router",
+	  "yemot",
+	  "yemot-api"
+  ]
 }
