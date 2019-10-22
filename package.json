@@ -1,17 +1,16 @@
 {
-  "name": "me-zeh-phone",
+  "name": "yemot-router",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "eslint": "^6.5.1",
-    "express": "^4.17.1",
-    "sequelize": "^5.21.1"
+    "express": "^4.17.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "node index.js"
   },
-  "author": "Avi Britman",
+  "author": "Musicode",
   "license": "ISC"
 }

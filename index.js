@@ -1,11 +1,5 @@
-const express = require("express");
-const router = require("./app/routers/");
-const port = 3000;
 
-const app = express();
+const yemot_ext = require("./lib/YemotExtension");
+console.log("yemot_ext Is load");
 
-app.use("/", router);
-
-app.listen(port, () => {
-	console.log("lisen in port", port);
-});
+module.exports = yemot_ext;

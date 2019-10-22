@@ -1,4 +1,9 @@
-const yemot_router = require("../yemot_api");
+const express = require("express");
+const port = 3000;
+
+const app = express();
+
+const yemot_router = require("../yemot_router");
 
 const y = new yemot_router();
 
@@ -16,4 +21,8 @@ y.add_fn(async (call) => {
 
 });
 
-module.exports = y;
+app.use("/", y);
+
+app.listen(port, () => {
+	console.log("lisen in port", port);
+});
