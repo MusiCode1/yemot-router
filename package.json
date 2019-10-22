@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node index.js"
+    "test": "mocha"
   },
   "author": "Musicode",
   "license": "ISC"

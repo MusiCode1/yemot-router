@@ -1,5 +1,2 @@
 
-const yemot_ext = require("./lib/YemotExtension");
-console.log("yemot_ext Is load");
-
-module.exports = yemot_ext;
+module.exports = require("./lib/yemot_router");
