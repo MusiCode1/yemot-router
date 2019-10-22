@@ -11,6 +11,10 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MusiCode1/yemot-router.git"
+  },
   "author": "musicode1",
   "license": "ISC",
   "keywords": [
