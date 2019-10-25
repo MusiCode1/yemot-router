@@ -3,9 +3,9 @@ const port = 3000;
 
 const app = express();
 
-const yemot_router = require("../yemot_router");
+const yemot_router = require("./");
 
-const y = new yemot_router();
+const y = yemot_router();
 
 y.add_fn(async (call) => {
 
@@ -18,7 +18,6 @@ y.add_fn(async (call) => {
 	r = await call.id_list_message(massage);
 
 	console.log("noop");
-
 });
 
 app.use("/", y);
