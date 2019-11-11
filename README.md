@@ -21,7 +21,7 @@ npm i yemot-router
 מחלקת הראוטר מקבלת כפרמטר פונקציית קולבק (CallBack), שהפרמטר שלה הוא אובייקט ה`Call`.
 עם המתודות של האובייקט הזה, ניתן להפעיל ולהפנות את המשתמש.
 
-## דוגמא בסיסית
+# דוגמא בסיסית
 <div dir="ltr" text-align="left">
 
 ```js
@@ -56,20 +56,16 @@ app.listen(port, () => {
 
 <div dir="rtl" text-align="right">
 
-## מתודות אובייקט ה`Call`
+# מתודות אובייקט ה`Call`
 
 <div dir="ltr" text-align="left">
 
-### `read(massage : [], mode : string, options : {}) : Promise`
+###  `read(massage : [], mode : string, options : {}) : Promise`
 <div dir="rtl" text-align="right">
 
 מתודה לשאילת שאלה את המשתמש, וקבלת התשובה מתי שתגיע, ע"י הבטחה (Promise).
 
-<div dir="ltr" text-align="left">
-
-#### `massage : Array`
-<div dir="rtl" text-align="right">
-
+#### הפרמטר  `massage` :
 הפרמטר הראשון, הוא השאלה שהמשתמש ישמע. מערך של אובייקטים, שכל אחד מהם הוא קובץ או הקראה, שתושמע למשתמש.
 
 טקסט שיוקרא למשתמש:
@@ -127,6 +123,66 @@ let massage = [
 	{ type: "alpha", data: "abc@gmail.com" }
 ];
 ```
+<div dir="rtl" text-align="right">
+
+#### הפרמטר  `mode` :
+הפרמטר הזה קובע, האם לקבל תשובה, ע"י הקשה, זיהוי דיבור, או הקלטה.
+
+האפשרויות:
+<div dir="ltr" text-align="left">
+
+`tap` = הקשה
+
+`voice` = זיהוי דיבור
+
+`rec` = הקלטה
+<div dir="rtl" text-align="right">
+
+#### הפרמטר  `options` :
+בפרמטר הזה, ניתן להעביר אפשרויות נוספות, כגון סך הקשות מינימלי, מקסימלי, וכו'.
+
+##### ערכי ברירת מחדל:
+<div dir="ltr" text-align="left">
+
+```js
+let options = {
+	
+	/* שם הערך בימות
+	 ברירת מחדל, נקבע אוטומטית,
+	 val_1, val_2 ... */
+	val_name: "val_x", 
+
+	/* האם לבקש את הערך שוב אם קיים. */
+	re_enter_if_exists: false,
+
+	max: "*",
+	min: 1,
+	sec_wait: 7,
+	play_ok_mode: "No",
+	block_asterisk: false,
+	allow_zero: true,
+	replace_char: "",
+
+	/* [1, 2, 3 ...]
+	*/
+	digits_allowed: "",
+	amount_attempts: "",
+	read_none_var: ""
+}
+```
+
+
+<div dir="ltr" text-align="left">
+
+### `go_to_folder(folder: string): void`
+
+### `restart_ext()`
+
+### `id_list_message(massage)`
+
+### `routing_yemot(phone)`
+
+### `send(data)`
 
 
 <div dir="ltr" text-align="left">
