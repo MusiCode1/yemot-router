@@ -26,12 +26,10 @@ npm i yemot-router
 
 ```js
 const express = require("express");
+const yemot_router = require("yemot-router");
+
 const port = 3000;
-
 const app = express();
-
-const yemot_router = require("./");
-
 const y = yemot_router();
 
 y.add_fn(async (call) => {
@@ -43,8 +41,6 @@ y.add_fn(async (call) => {
 
 	massage = [{ type: "text", data: "הקשת " + r + " תקיש 1 ותעוף מפה" }];
 	call.id_list_message(massage);
-
-	console.log("noop");
 });
 
 app.use("/", y);
@@ -141,7 +137,7 @@ let massage = [
 #### הפרמטר  `options` :
 בפרמטר הזה, ניתן להעביר אפשרויות נוספות, כגון סך הקשות מינימלי, מקסימלי, וכו'.
 
-##### ערכי ברירת מחדל:
+##### ערכי ברירת מחדל - הקשה:
 <div dir="ltr" text-align="left">
 
 ```js
@@ -155,24 +151,60 @@ let options = {
 	/* האם לבקש את הערך שוב אם קיים. */
 	re_enter_if_exists: false,
 
+	/* כמות ההקשות המקסימלית */
 	max: "*",
+
+	/* כמות ההקשות המינימלית */
 	min: 1,
+
+	/* שניות להמתנה */
 	sec_wait: 7,
+
+	/* צורת ההשמעה למשתמש את הקשותיו */
 	play_ok_mode: "No",
+
+	/* האם לחסום הקשה על כוכבית */
 	block_asterisk: false,
+
+	/* האם לאפשר הקשה על אפס */
 	allow_zero: true,
+
+	/* החלפת תווים*/
 	replace_char: "",
 
-	/* [1, 2, 3 ...]
+	/* ספרות מותרות להקשה - מערך
+	[1, 2, 3 ...]
 	*/
-	digits_allowed: "",
+	digits_allowed: [],
+
+	/* האם להתקדם באין תשובה */
 	amount_attempts: "",
+
+	/* הערך שיישלח באין תשובה */
 	read_none_var: ""
 }
 ```
+<div dir="rtl" text-align="right">
 
-
+##### ערכי ברירת מחדל - זיהוי דיבור:
 <div dir="ltr" text-align="left">
+
+```js
+let options = {
+
+};
+```
+
+<div dir="rtl" text-align="right">
+
+##### ערכי ברירת מחדל - הקלטה:
+<div dir="ltr" text-align="left">
+
+```js
+let options = {
+
+};
+```
 
 ### `go_to_folder(folder: string): void`
 
