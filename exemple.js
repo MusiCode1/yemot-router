@@ -7,7 +7,7 @@ const yemot_router = require("./");
 
 const y = yemot_router();
 
-y.add_fn(async (call) => {
+y.add_fn("/", async (call) => {
 
 	let massage = [{ type: "text", data: "היי, תקיש 10" }];
 	let r = await call.read(massage);
@@ -16,6 +16,9 @@ y.add_fn(async (call) => {
 
 	massage = [{ type: "text", data: "הקשת " + r + " תקיש 1 ותעוף מפה" }];
 	r = await call.id_list_message(massage);
+
+	massage = [{ type: "text", data: "אנא אמור את הרחוב בו אתה גר" }];
+	r = await call.read(massage, "stt");
 
 	console.log("noop");
 });
