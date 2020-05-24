@@ -18,6 +18,9 @@ y.add_fn("/", async (call) => {
 	r = await call.id_list_message(massage);
 
 	massage = [{ type: "text", data: "אנא אמור את הרחוב בו אתה גר" }];
+	r = await call.read(massage, "record");
+
+	massage = [{ type: "text", data: "אנא אמור את הרחוב בו אתה גר" }];
 	r = await call.read(massage, "stt");
 
 	console.log("noop");

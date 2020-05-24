@@ -129,9 +129,9 @@ let massage = [
 
 `tap` = הקשה
 
-`voice` = זיהוי דיבור
+`stt` = זיהוי דיבור
 
-`rec` = הקלטה
+`record` = הקלטה
 <div dir="rtl" text-align="right">
 
 #### הפרמטר  `options` :
