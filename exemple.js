@@ -17,10 +17,10 @@ y.add_fn("/", async (call) => {
 	massage = [{ type: "text", data: "הקשת " + r + " תקיש 1 ותעוף מפה" }];
 	r = await call.id_list_message(massage);
 
-	massage = [{ type: "text", data: "אנא אמור את הרחוב בו אתה גר" }];
+	massage = [{ type: "text", data: "אנא הקלט את הרחוב בו אתה גר" }];
 	r = await call.read(massage, "record");
 
-	massage = [{ type: "text", data: "אנא אמור את הרחוב בו אתה גר" }];
+	massage = [{ type: "text", data: "אנא אמור את שם הרחוב בו אתה גר" }];
 	r = await call.read(massage, "stt");
 
 	console.log("noop");
