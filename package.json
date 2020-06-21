@@ -21,5 +21,8 @@
     "extends express-router",
     "yemot",
     "yemot-api"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
