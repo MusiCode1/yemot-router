@@ -15,7 +15,7 @@ interface Call {
 
     extension: string,
 
-    read: (massage: msg_data, mode?: string, options?: read_options) => Promise<string>;
+    read: (massage: msg_data, mode?: string, options?: read_options) => Promise<{ data: string | boolean, hangup: boolean }>;
 
     go_to_folder: (folder: string) => void;
 

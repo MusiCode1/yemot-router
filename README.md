@@ -37,9 +37,13 @@ y.add_fn(async (call) => {
 	let massage = [{ type: "text", data: "היי, תקיש 10" }];
 	let r = await call.read(massage);
 
+	if(r.hangup) {
+		return;
+	}
+
 	console.log(r);
 
-	massage = [{ type: "text", data: "הקשת " + r + " תקיש 1 ותעוף מפה" }];
+	massage = [{ type: "text", data: "הקשת " + r.data }];
 	call.id_list_message(massage);
 });
 

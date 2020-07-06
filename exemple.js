@@ -12,18 +12,35 @@ y.add_fn("/", async (call) => {
 	let massage = [{ type: "text", data: "היי, תקיש 10" }];
 	let r = await call.read(massage);
 
-	console.log(call.call_id, r);
+	if(r.hangup) {
+		console.log("hangup!!");
+		
+		return;
+	}
 
-	massage = [{ type: "text", data: "הקשת " + r + " תקיש 1 ותעוף מפה" }];
-	r = await call.id_list_message(massage);
-
-	massage = [{ type: "text", data: "אנא הקלט את הרחוב בו אתה גר" }];
+	massage = [
+		{ type: "text", data: "הקשת " + r.data },
+		{ type: "text", data: "אנא הקלט את הרחוב בו אתה גר" }
+	];
 	r = await call.read(massage, "record");
+
+	if(r.hangup) {
+		return;
+	}
 
 	massage = [{ type: "text", data: "אנא אמור את שם הרחוב בו אתה גר" }];
 	r = await call.read(massage, "stt");
 
-	console.log("noop");
+	if(r.hangup) {
+		return;
+	}
+
+	massage = [{ type: "text", data: "אמרת" }];
+	r = await call.id_list_message(massage);
+
+	if(r.hangup) {
+		return;
+	}
 });
 
 app.use("/", y);
