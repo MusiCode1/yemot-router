@@ -15,13 +15,15 @@ interface Call {
 
     extension: string,
 
-    read: (massage: msg_data, mode?: string, options?: read_options) => Promise<{ data: string | boolean, hangup: boolean }>;
+    read: (massage: msg_data, mode?: string, options?: read_options) => Promise<{ data: string | false, hangup: boolean }>;
 
     go_to_folder: (folder: string) => void;
 
     id_list_message: (data: msg_data) => void;
 
     routing_yemot: (phone: string) => void;
+
+    restart_ext: () => void;
 }
 type Handler = (p: Call) => void;
 
