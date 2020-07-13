@@ -5,25 +5,25 @@ interface YemotRouter {
 }
 interface Call {
 
-    did: string,
+    did: string;
 
-    phone: string,
+    phone: string;
 
-    real_did: string,
+    real_did: string;
 
-    call_id: string,
+    call_id: string;
 
-    extension: string,
+    extension: string;
 
-    read: (massage: msg_data, mode?: string, options?: read_options) => Promise<{ data: string | false, hangup: boolean }>;
+    read(massage: msg_data, mode?: mode, options?: read_options): Promise<{ data: string | false, hangup: boolean }>;
 
-    go_to_folder: (folder: string) => void;
+    go_to_folder(folder: string): void;
 
-    id_list_message: (data: msg_data) => void;
+    id_list_message(data: msg_data): void;
 
-    routing_yemot: (phone: string) => void;
+    routing_yemot(phone: string): void;
 
-    restart_ext: () => void;
+    restart_ext(): void;
 }
 type Handler = (p: Call) => void;
 
@@ -32,6 +32,8 @@ type msg_data = [
 ];
 
 type data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha";
+
+type mode = "tap" | "stt" | "record";
 
 type read_options = {
     val_name: string,
@@ -45,6 +47,7 @@ type read_options = {
     replace_char: string
     digits_allowed: number[],
     amount_attempts: number,
+    read_none: boolean,
     read_none_var: string,
 
     lang: string,
