@@ -181,8 +181,11 @@ let options = {
 	*/
 	digits_allowed: [],
 
-	/* האם להתקדם באין תשובה */
+	/* אחרי כמה שניות להשמיע שוב את השאלה */
 	amount_attempts: "",
+
+	/* אם המשתמש לא ענה, האם לשלוח ערך*/
+	read_none: false,
 
 	/* הערך שיישלח באין תשובה */
 	read_none_var: ""
@@ -196,6 +199,9 @@ let options = {
 ```js
 let options = {
 
+	lang: "",
+
+	allow_typing: false
 };
 ```
 
@@ -207,6 +213,15 @@ let options = {
 ```js
 let options = {
 
+	path: "",
+
+	file_name: "",
+
+	record_ok: true
+
+	record_hangup: false
+
+	record_attach: false
 };
 ```
 

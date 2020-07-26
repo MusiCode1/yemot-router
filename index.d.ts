@@ -43,7 +43,7 @@ type read_options = {
     sec_wait: number,
     play_ok_mode: play_ok_mode,
     block_asterisk: boolean,
-    allow_zero: boolean,
+    block_zero: boolean,
     replace_char: string
     digits_allowed: number[],
     amount_attempts: number,
