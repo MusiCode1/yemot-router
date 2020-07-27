@@ -170,8 +170,8 @@ let options = {
 	/* האם לחסום הקשה על כוכבית */
 	block_asterisk: false,
 
-	/* האם לאפשר הקשה על אפס */
-	allow_zero: true,
+	/* האם לחסום הקשה על אפס */
+	block_zero: false,
 
 	/* החלפת תווים*/
 	replace_char: "",
@@ -217,11 +217,15 @@ let options = {
 
 	file_name: "",
 
-	record_ok: true
+	record_ok: true,
 
-	record_hangup: false
+	record_hangup: false,
 
-	record_attach: false
+	record_attach: false,
+
+	lenght_min: "",
+
+	lenght_max: ""
 };
 ```
 
