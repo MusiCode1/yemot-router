@@ -32,10 +32,10 @@ const port = 3000;
 const app = express();
 const y = yemot_router();
 
-y.add_fn(async (call) => {
+y.add_fn("/", async (call) => {
 
-	let massage = [{ type: "text", data: "היי, תקיש 10" }];
-	let r = await call.read(massage);
+	let message = [{ type: "text", data: "היי, תקיש 10" }];
+	let r = await call.read(message);
 
 	if(r.hangup) {
 		return;
@@ -43,14 +43,14 @@ y.add_fn(async (call) => {
 
 	console.log(r);
 
-	massage = [{ type: "text", data: "הקשת " + r.data }];
-	call.id_list_message(massage);
+	message = [{ type: "text", data: "הקשת " + r.data }];
+	call.id_list_message(message);
 });
 
 app.use("/", y);
 
 app.listen(port, () => {
-	console.log("lisen in port", port);
+	console.log("listening in port", port);
 });
 ```
 
@@ -65,14 +65,14 @@ app.listen(port, () => {
 
 מתודה לשאילת שאלה את המשתמש, וקבלת התשובה מתי שתגיע, ע"י הבטחה (Promise).
 
-#### הפרמטר  `massage` :
+#### הפרמטר  `message` :
 הפרמטר הראשון, הוא השאלה שהמשתמש ישמע. מערך של אובייקטים, שכל אחד מהם הוא קובץ או הקראה, שתושמע למשתמש.
 
 טקסט שיוקרא למשתמש:
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
+let message = [
 	{ type: "text", data: "היי, תקיש 10" }
 ];
 ```
@@ -81,7 +81,7 @@ let massage = [
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
+let message = [
 	{ type: "file", data: "000" }
 ];
 ```
@@ -90,7 +90,7 @@ let massage = [
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
+let message = [
 	{ type: "number", data: "512" }
 ];
 ```
@@ -99,7 +99,7 @@ let massage = [
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
+let message = [
 	{ type: "digits", data: "077313770" }
 ];
 ```
@@ -109,7 +109,7 @@ let massage = [
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
+let message = [
 	{ type: "speech", data: "000" }
 ];
 ```
@@ -119,7 +119,7 @@ let massage = [
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
+let message = [
 	{ type: "alpha", data: "abc@gmail.com" }
 ];
 ```
@@ -233,7 +233,7 @@ let options = {
 
 ### `restart_ext()`
 
-### `id_list_message(massage)`
+### `id_list_message(message)`
 
 ### `routing_yemot(phone)`
 
