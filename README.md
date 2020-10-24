@@ -32,7 +32,7 @@ const port = 3000;
 const app = express();
 const y = yemot_router();
 
-y.add_fn(async (call) => {
+y.add_fn("/", async (call) => {
 
 	let massage = [{ type: "text", data: "היי, תקיש 10" }];
 	let r = await call.read(massage);
