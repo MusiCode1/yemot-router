@@ -1,9 +1,9 @@
-declare function Yemot(): YemotRouter;
+export declare function Yemot(): YemotRouter;
 
 interface YemotRouter {
     add_fn: (path: string, handler: Handler) => void;
 }
-interface Call {
+export type Call = {
 
     did: string;
 
@@ -61,5 +61,3 @@ type read_options = {
 };
 
 type play_ok_mode = "Number" | "Digits" | "File" | "Alpha" | "No";
-
-export = Yemot;
