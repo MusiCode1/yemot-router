@@ -26,7 +26,7 @@ npm i yemot-router
 
 ```js
 const express = require("express");
-const yemot_router = require("yemot-router");
+const { Yemot_router } = require("yemot-router");
 
 const port = 3000;
 const app = express();
@@ -38,13 +38,36 @@ y.add_fn("/", async (call) => {
 	let r = await call.read(massage);
 
 	if(r.hangup) {
+		console.log("hangup!!");
+		
 		return;
 	}
 
-	console.log(r);
+	massage = [
+		{ type: "text", data: "הקשת " + r.data },
+		{ type: "text", data: "אנא הקלט את הרחוב בו אתה גר" }
+	];
+	r = await call.read(massage, "record");
 
-	massage = [{ type: "text", data: "הקשת " + r.data }];
-	call.id_list_message(massage);
+	if(r.hangup) {
+		return;
+	}
+
+	massage = [{ type: "text", data: "אנא אמור את שם הרחוב בו אתה גר" }];
+	r = await call.read(massage, "stt");
+
+	if(r.hangup) {
+		return;
+	}
+
+	massage = [{ type: "text", data: "אמרת" }];
+	r = await call.id_list_message(massage, true);
+
+	call.go_to_folder("/1");
+
+	if(r.hangup) {
+		return;
+	}
 });
 
 app.use("/", y);

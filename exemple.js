@@ -3,9 +3,9 @@ const port = 3000;
 
 const app = express();
 
-const yemot_router = require("./");
+const {Yemot_router} = require("./");
 
-const y = yemot_router();
+const y = Yemot_router();
 
 y.add_fn("/", async (call) => {
 
@@ -36,7 +36,9 @@ y.add_fn("/", async (call) => {
 	}
 
 	massage = [{ type: "text", data: "אמרת" }];
-	r = await call.id_list_message(massage);
+	r = await call.id_list_message(massage, true);
+
+	call.go_to_folder("/1");
 
 	if(r.hangup) {
 		return;

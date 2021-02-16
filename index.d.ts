@@ -17,23 +17,24 @@ export type Call = {
 
     query: object;
 
-    read(massage: msg_data, mode?: mode, options?: read_options): Promise<{ data: string | false, hangup: boolean }>;
+    async read(massage: msg_data, mode?: mode, options?: read_options): Promise<{ data: string | false, hangup: boolean }>;
 
     go_to_folder(folder: string): void;
 
-    id_list_message(data: msg_data): void;
+    async id_list_message(data: msg_data, wait_to_more_action: boolean): void;
 
     routing_yemot(phone: string): void;
 
     restart_ext(): void;
-}
+};
+
 type Handler = (p: Call) => void;
 
 type msg_data = [
-    { type: data_type, data: string }
+    { type: msg_data_type, data: string }
 ];
 
-type data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha";
+type msg_data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha";
 
 type mode = "tap" | "stt" | "record";
 
