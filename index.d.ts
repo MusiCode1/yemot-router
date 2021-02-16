@@ -1,4 +1,4 @@
-export declare function Yemot(): YemotRouter;
+export declare function Yemot_router(): YemotRouter;
 
 interface YemotRouter {
     add_fn: (path: string, handler: Handler) => void;
@@ -14,6 +14,8 @@ export type Call = {
     call_id: string;
 
     extension: string;
+
+    query: object;
 
     read(massage: msg_data, mode?: mode, options?: read_options): Promise<{ data: string | false, hangup: boolean }>;
 
