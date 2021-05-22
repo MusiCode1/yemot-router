@@ -17,7 +17,7 @@ export type Call = {
 
     query: object;
 
-    async read(massage: msg_data, mode?: mode, options?: read_options): Promise<{ data: string | false, hangup: boolean }>;
+    async read(massage: msg_data, mode?: mode, options?: read_options): Promise<String | false>;
 
     go_to_folder(folder: string): void;
 

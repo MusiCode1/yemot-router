@@ -10,15 +10,22 @@ const y = Yemot_router();
 y.add_fn("/", async (call) => {
 
 	let massage = [{ type: "text", data: "היי, תקיש 10" }];
-	let r = await call.read(massage);
+	let r = await call.read(massage)
+		.catch(error => {
+			if (error.name === "Hangup_error")
+				console.log(error.call.phone, "hangup");
+				
+			throw error;
+		});
 
 	console.log(r);
 
 	massage = [
-		{ type: "text", data: "הקשת " + r.data },
+		{ type: "text", data: "הקשת " + r },
 		{ type: "text", data: "אנא הקלט את הרחוב בו אתה גר" }
 	];
 	r = await call.read(massage, "record");
+
 
 	console.log(r);
 
