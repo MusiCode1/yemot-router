@@ -1,4 +1,4 @@
-export declare function Yemot_router(): YemotRouter;
+export declare function Yemot_router(opt?: { timeout: number }): YemotRouter;
 
 interface YemotRouter {
     add_fn: (path: string, handler: Handler) => void;
