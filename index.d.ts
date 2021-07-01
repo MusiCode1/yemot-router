@@ -64,3 +64,32 @@ type read_options = {
 };
 
 type play_ok_mode = "Number" | "Digits" | "File" | "Alpha" | "No";
+
+export const errors = {
+    Exit_error,
+
+}
+
+
+class Exit_error extends Error {
+    constructor(call, ...params) {
+        // Pass remaining arguments (including vendor specific ones) to parent constructor
+        super(...params);
+
+        this.call = new Call();
+
+        this.name = "Exit_error";
+        this.date = new Date();
+    }
+}
+class Hangup_error extends Exit_error {
+	constructor(...params) {
+		this.name = "Hangup_error";
+	}
+}
+
+class Timeout_error extends Exit_error {
+	constructor(...params) {
+		this.name = "Timeout_error";
+	}
+}

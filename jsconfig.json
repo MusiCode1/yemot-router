@@ -1,0 +1,24 @@
+{
+    "exclude": [
+        "node_modules"
+    ],
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "target": "ES6",
+        "module": "commonjs",
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "*",
+                //"lib/*",
+                "lib/**"
+            ]
+        }
+    },
+    "include": [
+        "*",
+        "lib",
+        "misc",
+        "test/*"
+    ]
+}
