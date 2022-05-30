@@ -5,9 +5,18 @@ const { Yemot_router } = require("./");
 const y = Yemot_router();
 
 y.add_fn("/", async (call) => {
+  
+	let massage = [{ type: "text", data: "היי, תקיש 10" }];
+	let r = await call.read(massage)
+    .catch(error => {
+			if (error.name === "Hangup_error")
+				console.log(error.call.phone, "hangup");
+			throw error;
+		});
+
 	let massage = [{ type: "text", data: "שלום, אנא הקש את שמך המלא" }];
 	let r = await call.read(massage, "tap", { play_ok_mode: "HebrewKeyboard" })
-		.catch(error => {
+    .catch(error => {
 			if (error.name === "Hangup_error")
 				console.log(error.call.phone, "hangup");
 			throw error;
