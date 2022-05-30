@@ -9,6 +9,8 @@ const y = Yemot_router();
 
 y.add_fn("/", async (call) => {
 
+	call.
+
 	let massage = [{ type: "text", data: "היי, תקיש 10" }];
 	let r = await call.read(massage)
 		.catch(error => {
