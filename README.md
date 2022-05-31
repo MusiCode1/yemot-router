@@ -151,8 +151,9 @@ let options = {
 
 	/* צורת ההשמעה למשתמש את הקשותיו */
 	/* באם מעוניינים במקלדת שונה ממקלדת ספרות, כגון EmailKeyboard או HebrewKeyboard, יש להכניס כאן את סוג המקלדת
-	[ראו exemple.js] */
-	/
+	[ראו exemple.js] 
+	"Number" | "Digits" | "File" | "Alpha" | "No" | "HebrewKeyboard" | "EmailKeyboard";
+	*/
 	play_ok_mode: "No",
 
 	/* האם לחסום הקשה על כוכבית */

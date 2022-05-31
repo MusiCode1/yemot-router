@@ -63,7 +63,7 @@ type read_options = {
     record_attach: boolean
 };
 
-type play_ok_mode = "Number" | "Digits" | "File" | "Alpha" | "No";
+type play_ok_mode = "Number" | "Digits" | "File" | "Alpha" | "No" | "HebrewKeyboard" | "EmailKeyboard";
 
 export const errors = {
     Exit_error,
