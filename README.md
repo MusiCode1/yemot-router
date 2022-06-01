@@ -164,11 +164,14 @@ let options = {
 
 	/* צורת ההשמעה למשתמש את הקשותיו */
 	/* באם מעוניינים במקלדת שונה ממקלדת ספרות, כגון EmailKeyboard או HebrewKeyboard, יש להכניס כאן את סוג המקלדת
-	[ראו exemple.js] 
-	"Number" | "Digits" | "File" | "TTS" | "Alpha" | "No" | "HebrewKeyboard" | "EmailKeyboard" | "EnglishKeyboard" | "DigitsKeyboard" | "TeudatZehut" | "Price" | "Time" | "Phone" | "No"
-	פירוט על כל אופציה ניתן למצוא בתיעוד מודול API של ימות המשיח תחת "הערך השישי (הקשה)".
+	[ראו exemple.js]
+	האופציות הקיימות:
+	"Number" | "Digits" | "File" | "TTS" | "Alpha" | "No" | "HebrewKeyboard" |
+	"EmailKeyboard" | "EnglishKeyboard" | "DigitsKeyboard" | "TeudatZehut" |
+	 "Price" | "Time" | "Phone" | "No"
+	פירוט על כל אופציה ניתן למצוא בתיעוד מודול API של ימות המשיח, תחת ‏‏‏"הערך השישי (הקשה)".
 	*/
-	play_ok_mode: "No",
+‏	play_ok_mode: "No",
 
 	/* האם לחסום הקשה על כוכבית */
 	block_asterisk: false,
