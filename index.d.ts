@@ -48,7 +48,7 @@ type read_options = {
     block_asterisk: boolean,
     block_zero: boolean,
     replace_char: string
-    digits_allowed: number[],
+    digits_allowed: (number | string)[],
     amount_attempts: number,
     read_none: boolean,
     read_none_var: string,
