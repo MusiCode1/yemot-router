@@ -52,6 +52,7 @@ type read_options = {
     amount_attempts: number,
     read_none: boolean,
     read_none_var: string,
+    block_change_type_lang: boolean,
 
     lang: string,
     allow_typing: boolean,

@@ -195,6 +195,9 @@ let options = {
 
 	/* הערך שיישלח באין תשובה */
 	read_none_var: ""
+
+	/* האם לחסום שינוי שפת מקלדת */
+	block_change_type_lang: false,
 }
 ```
 <div dir="rtl" text-align="right">
