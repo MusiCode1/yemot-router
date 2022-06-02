@@ -34,7 +34,7 @@ type msg_data = [
     { type: msg_data_type, data: string }
 ];
 
-type msg_data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha";
+type msg_data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha" | "zmanim" | "go_to_folder";
 
 type mode = "tap" | "stt" | "record";
 
@@ -48,10 +48,11 @@ type read_options = {
     block_asterisk: boolean,
     block_zero: boolean,
     replace_char: string
-    digits_allowed: number[],
+    digits_allowed: (number | string)[],
     amount_attempts: number,
     read_none: boolean,
     read_none_var: string,
+    block_change_type_lang: boolean,
 
     lang: string,
     allow_typing: boolean,
@@ -63,7 +64,7 @@ type read_options = {
     record_attach: boolean
 };
 
-type play_ok_mode = "Number" | "Digits" | "File" | "Alpha" | "No" | "HebrewKeyboard" | "EmailKeyboard";
+type play_ok_mode = "Number" | "Digits" | "File" | "TTS" | "Alpha" | "No" | "HebrewKeyboard" | "EmailKeyboard" | "EnglishKeyboard" | "DigitsKeyboard" | "TeudatZehut" | "Price" | "Time" | "Phone" | "No";
 
 export const errors = {
     Exit_error,
