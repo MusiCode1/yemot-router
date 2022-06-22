@@ -34,7 +34,7 @@ type msg_data = [
     { type: msg_data_type, data: string }
 ];
 
-type msg_data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha" | "zmanim" | "go_to_folder";
+type msg_data_type = "file" | "text" | "speech" | "digits" | "number" | "alpha" | "zmanim" | "go_to_folder" | "system_message";
 
 type mode = "tap" | "stt" | "record";
 
