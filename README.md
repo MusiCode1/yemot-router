@@ -8,11 +8,13 @@ With the help of God in teaching English, I'll translate that.
 לתכנת מערכות מתקדמות ב'ימות-המשיח' בקלות באמצעות [מודול API](https://f2.freeivr.co.il/post/76).
 
 # התקנה (NodeJS)
+
 <div dir="ltr" text-align="left">
 
 ```bash
 npm i yemot-router
 ```
+
 <div dir="rtl" text-align="right">
 
 # שימוש
@@ -31,15 +33,17 @@ npm i yemot-router
 
 כעת בעת ניתוק, פשוט תיזרק שגיאה.
 
-ניתן לתפוס אותה להתנהגות מותאמת אישית (ראה דוגמה  בקובץ `exemple.js/.`),
+ניתן לתפוס אותה להתנהגות מותאמת אישית (ראה דוגמה בקובץ `exemple.js/.`),
 
 או להתעלם, לעצירה של הסקריפט.
+
 </details>
 
 # דוגמא בסיסית
+
 <div dir="ltr" text-align="left">
 
- ./exemple.js
+./exemple.js
 
 <div dir="rtl" text-align="right">
 
@@ -63,10 +67,8 @@ npm i yemot-router
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
-	{ type: "text", data: "היי, תקיש 10" }
-];
-let massage = [{ type: 'text', data: 'היי, תקיש 10' }];
+let massage = [{ type: "text", data: "היי, תקיש 10" }];
+let massage = [{ type: "text", data: "היי, תקיש 10" }];
 ```
 
 <div dir="rtl" text-align="right">
@@ -74,48 +76,43 @@ let massage = [{ type: 'text', data: 'היי, תקיש 10' }];
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
-	{ type: "file", data: "000" }
-];
+let massage = [{ type: "file", data: "000" }];
 ```
+
 <div dir="rtl" text-align="right">
 השמעת מספר:
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
-	{ type: "number", data: "512" }
-];
+let massage = [{ type: "number", data: "512" }];
 ```
+
 <div dir="rtl" text-align="right">
 השמעת ספרות:
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
-	{ type: "digits", data: "077313770" }
-];
+let massage = [{ type: "digits", data: "077313770" }];
 ```
+
 <div dir="rtl" text-align="right">
 הקראת קובץ טקסט הנמצא במערכת:
 
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
-	{ type: "speech", data: "000" }
-];
+let massage = [{ type: "speech", data: "000" }];
 ```
+
 <div dir="rtl" text-align="right">
 הקראת אותיות באנגלית:
 
 <div dir="ltr" text-align="left">
 
 ```js
-let massage = [
-	{ type: "alpha", data: "abc@gmail.com" }
-];
+let massage = [{ type: "alpha", data: "abc@gmail.com" }];
 ```
+
 <div dir="rtl" text-align="right">
 
 #### הפרמטר `mode`
@@ -144,11 +141,11 @@ let massage = [
 
 ```js
 let options = {
-	
+
 	/* שם הערך בימות
 	 ברירת מחדל, נקבע אוטומטית,
 	 val_1, val_2 ... */
-	val_name: "val_x", 
+	val_name: "val_x",
 
 	/* האם לבקש את הערך שוב אם קיים. */
 	re_enter_if_exists: false,
@@ -200,17 +197,18 @@ let options = {
 	block_change_type_lang: false,
 }
 ```
+
 <div dir="rtl" text-align="right">
 
 ##### ערכי ברירת מחדל - זיהוי דיבור:
+
 <div dir="ltr" text-align="left">
 
 ```js
 let options = {
+  lang: "",
 
-	lang: "",
-
-	allow_typing: false
+  allow_typing: false,
 };
 ```
 
@@ -222,26 +220,26 @@ let options = {
 
 ```js
 let options = {
+  path: "",
 
-	path: "",
+  file_name: "",
 
-	file_name: "",
+  record_ok: true,
 
-	record_ok: true,
+  record_hangup: false,
 
-	record_hangup: false,
+  record_attach: false,
 
-	record_attach: false,
+  lenght_min: "",
 
-	lenght_min: "",
-
-	lenght_max: ""
+  lenght_max: "",
 };
 ```
 
 </details>
 
 ### `go_to_folder(folder: string): void`
+
 מתודה להעברת השיחה לשלוחה מסוימת במערכת הנוכחית.
 ניתן לכתוב נתיב יחסי לשלוחה הנוכחית או לשלוחה הראשית. פירוט על האופציות ניתן לקרוא [כאן](https://f2.freeivr.co.il/post/58).
 ניתן להעביר בפרמטר folder את הסטרינג `hangup`, וכך לנתק את השיחה.
@@ -250,6 +248,7 @@ let options = {
 
 מתודה פשוטה ללא ארגומנטים להפעלה מחדש של השלוחה הנוכחית.
 זהה לכתיבה הבאה:
+
 ```js
 go_to_folder(`/${call.ApiExtension}`);
 ```
@@ -258,14 +257,14 @@ go_to_folder(`/${call.ApiExtension}`);
 
 במתודה זו ניתן להשמיע למשתמש הודעה אחת, או מספר הודעות ברצף.
 
-----------
+---
 
 <div style="border: 1.5px solid; color: #ff6037" dir="rtl">
 באם מעוניינים לשרשר פעולה נוספת, לדוגמה להשמיע הודעה ואז לבצע <code>read</code> (קבלת נתונים נוספים), יש להעביר לארגומנט השני <code>true</code>.
 באם אחרי השמעת ההודעה מעוניינים שהמאזין ייצא מהשלוחה, ניתן להשאיר את הפרמטר השני ריק.
 </div>
 
-----------
+---
 
 <details>
 הפונקציה מקבלת כארגומנט ראשון מערך של אובייקטי הודעה. כל אובייקט במערך צריך להיות במבנה הבא:
@@ -296,6 +295,9 @@ go_to_folder(`/${call.ApiExtension}`);
 - `zmanim` - השמעה שעה לפי משתנה
 - `go_to_folder` - מעבר לשלוחה אחרת (לא ניתן לשרשר הודעות/פקודות נוספות לאחר פקודה זו)
 - `system_message` - השמעת הודעת מערכת (מקבל ב`data` את מספר ההודעה, עם או בלי `M` בהתחלה.)
+- `music_on_hold` - מוזיקה בהמתנה
+- `date` - השמעת תאריך לועזי (יש לכתוב את התאריך בפורמט dd/mm/yyyy)
+- `dateH` - השמעת תאריך עברי (יש לכתוב את התאריך הלועזי בפורמט dd/mm/yyyy)
 
 #### הפרמטר `data`
 
@@ -340,14 +342,14 @@ go_to_folder(`/${call.ApiExtension}`);
 
 ```js
 let massage = [
-    {
-        type: 'zmanim',
-        data: {
-            time: 'sunset',
-            zone: 'IL/Bney_Brak',
-            difference: '+1D',
-        },
+  {
+    type: "zmanim",
+    data: {
+      time: "sunset",
+      zone: "IL/Bney_Brak",
+      difference: "+1D",
     },
+  },
 ];
 ```
 
@@ -359,7 +361,6 @@ let massage = [
 
 הפונקציה מקבלת ארגומנט יחיד - סטרינג של מספר מערכת בימות להעברת השיחה.
 ניתן גם לנתב את השיחה ממערכת בשרת הפריווט לשרת הרגיל ולהיפך.
-
 
 ### `send(data: string)`
 
