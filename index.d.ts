@@ -45,7 +45,9 @@ type msg_data_type =
   | "zmanim"
   | "go_to_folder"
   | "system_message"
-  | "date";
+  | "music_on_hold"
+  | "date"
+  | "dateH";
 
 type mode = "tap" | "stt" | "record";
 
