@@ -43,7 +43,7 @@ npm i yemot-router
 
 <div dir="ltr" text-align="left">
 
-./exemple.js
+[./exemple.js](/exemple.js)
 
 <div dir="rtl" text-align="right">
 
