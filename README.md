@@ -310,8 +310,8 @@ go_to_folder(`/${call.ApiExtension}`);
 ```js
 {
  time: string, // optional, default: "T" (current time)
- zone: string,
- difference: string // optional, default: "IL/Jerusalem"
+ zone: string, // optional, default: "IL/Jerusalem"
+ difference: string 
 }
 ```
 
