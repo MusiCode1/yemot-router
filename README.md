@@ -191,7 +191,7 @@ let options = {
 	read_none: false,
 
 	/* הערך שיישלח באין תשובה */
-	read_none_var: ""
+	read_none_var: "",
 
 	/* האם לחסום שינוי שפת מקלדת */
 	block_change_type_lang: false,
